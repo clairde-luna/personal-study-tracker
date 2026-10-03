@@ -1,3 +1,6 @@
+# an empty list
+tasks = []
+
 # defines the function where the user accesses the menu
 def show_menu():
   print("\n=== PERSONAL STUDY TRACKER ===")
@@ -6,6 +9,21 @@ def show_menu():
   print("3. Mark a task complete")
   print("4. View progress")
   print("5. Exit")
+
+#  function that displays all your tasks
+def view_tasks():
+  
+  # checks if the list is empty or not
+  if not tasks:
+    print("No tasks yet!")
+    # exit the function early
+    return
+    
+  for  task in tasks:
+    # print the task name
+    # print the subject
+    pass
+    # placeholder for after code is written
 
 # main logic
 def main():
