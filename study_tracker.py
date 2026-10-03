@@ -10,6 +10,16 @@ def show_menu():
   print("4. View progress")
   print("5. Exit")
 
+#function that lets us add a task
+def add_task():
+  name = input("Enter task name: ")
+  subject = input("Enter subject: ")
+  task = {
+    "name": name,
+    "subject": subject,
+    "completed": False
+  }
+
 #  function that displays all your tasks
 def view_tasks():
   
@@ -20,10 +30,10 @@ def view_tasks():
     return
     
   for  task in tasks:
-    # print the task name
-    # print the subject
-    pass
-    # placeholder for after code is written
+    if task["completed"]:
+      status = "Completed"
+    else:
+      status = "Incomplete"
 
 # main logic
 def main():
