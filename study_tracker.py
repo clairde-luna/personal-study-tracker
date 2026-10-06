@@ -1,3 +1,5 @@
+import json
+
 # an empty list for our tasks
 tasks = []
 
@@ -19,6 +21,10 @@ def add_task():
     "subject": subject,
     "completed": False
   }
+  
+  tasks.append(task)
+  save_tasks()
+  print("Task added successfully!")
 
 #  function that displays all your tasks
 def view_tasks():
@@ -29,11 +35,14 @@ def view_tasks():
     # exit the function early
     return
     
-  for  task in tasks:
+  for task in tasks:
     if task["completed"]:
       status = "Completed"
     else:
       status = "Incomplete"
+
+    # this prints: "Task Name (Subject) - Completion Status"
+    print(f"{task['name']}({task['subject']}) - {status}")
 
 # function used to complete a task
 def complete_task():
@@ -48,10 +57,29 @@ def complete_task():
   task = tasks[index]
   
   task["completed"] = True
+  
+  save_tasks()
   print("Task marked as complete!")
+
+# saving tasks
+def save_tasks():
+  # this basically opens the file for writing, "w" means write; then we get a temporary connection to the file.
+  with open("tasks.json", "w") as file:
+    # this takes the python tasks list and write it into the file tasks.json as JSON
+    json.dump(tasks, file)
+
+# loading tasks
+def load_tasks():
+  # r means read
+  with open("tasks.json", "r") as file:
+    # this basically asks for the python data of json
+    return json.load(file)
 
 # main logic
 def main():
+  global tasks
+  tasks = load_tasks()
+  
   print("\n=== YOUR STUDY TRACKER ====")
   while True:
     show_menu()
@@ -60,13 +88,13 @@ def main():
     choice = input("Choose an option: ")
     if choice == "1":
         add_task()
-     elif choice == "2":
+    elif choice == "2":
         view_tasks()
-     elif choice == "3":
+    elif choice == "3":
         complete_task()
-     elif choice == "4":
+    elif choice == "4":
         print("Progress feature coming soon!")
-     elif choice == "5":
+    elif choice == "5":
         print("Goodbye!")
         break
     else:
