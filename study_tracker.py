@@ -1,4 +1,4 @@
-# an empty list
+# an empty list for our tasks
 tasks = []
 
 # defines the function where the user accesses the menu
@@ -35,6 +35,21 @@ def view_tasks():
     else:
       status = "Incomplete"
 
+# function used to complete a task
+def complete_task():
+  if not tasks:
+    print("No tasks to complete!")
+    return
+    
+  view_tasks()
+  choice = input("Which task would you like to complete? ")
+  
+  index = int(choice) - 1
+  task = tasks[index]
+  
+  task["completed"] = True
+  print("Task marked as complete!")
+
 # main logic
 def main():
   print("\n=== YOUR STUDY TRACKER ====")
@@ -44,15 +59,15 @@ def main():
     # declare a string variable for choice:
     choice = input("Choose an option: ")
     if choice == "1":
-        print("Task feature coming soon!")
+        add_task()
      elif choice == "2":
-        print("View tasks feature coming soon!")
+        view_tasks()
      elif choice == "3":
-        print("Completion feature coming soon!")
+        complete_task()
      elif choice == "4":
         print("Progress feature coming soon!")
      elif choice == "5":
-         print("Goodbye!")
+        print("Goodbye!")
         break
     else:
       print("Invalid choice. Please try again.")
