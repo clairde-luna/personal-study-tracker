@@ -51,7 +51,15 @@ def complete_task():
     return
     
   view_tasks()
-  choice = input("Which task would you like to complete? ")
+  try:
+    choice = int(input("Which task would you like to complete? "))
+  except ValueError: 
+    print("That's not a valid number!")
+    return
+
+  if choice < 1 or choice > len(tasks):
+    print("That's not a valid task number!")
+    return
   
   index = int(choice) - 1
   task = tasks[index]
