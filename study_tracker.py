@@ -75,6 +75,26 @@ def load_tasks():
     # this basically asks for the python data of json
     return json.load(file)
 
+# seeing the completion progress!
+def view_progress():
+
+  total_tasks = len(tasks)
+  if total_tasks == 0:
+    print("No tasks yet!")
+    return
+
+  completed_tasks = 0
+  
+  for task in tasks:
+    if task["completed"]:
+      completed_tasks += 1
+      
+  # remaining amount of tasks
+  incomplete_tasks = total_tasks - completed_tasks
+  
+  # finding percentage for completion rate!
+  completion_rate = (completed_tasks / total_tasks) * 100
+
 # main logic
 def main():
   global tasks
@@ -93,7 +113,11 @@ def main():
     elif choice == "3":
         complete_task()
     elif choice == "4":
-        print("Progress feature coming soon!")
+        print("\n=== YOUR PROGRESS ===")
+        print(f"Total tasks: {total_tasks}")
+        print(f"Completed: {completed_tasks}")
+        print(f"Incomplete: {incomplete_tasks}")
+        print(f"Completion rate: {completion_rate}%")
     elif choice == "5":
         print("Goodbye!")
         break
