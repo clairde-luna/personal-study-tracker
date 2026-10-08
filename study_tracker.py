@@ -60,9 +60,10 @@ def complete_task():
   if choice < 1 or choice > len(tasks):
     print("That's not a valid task number!")
     return
-  
-  index = int(choice) - 1
-  task = tasks[index]
+
+  # calculates the specific numbering for the task we're choosing to index.
+  task_index = int(choice) - 1
+  task = tasks[task_index]
   
   task["completed"] = True
   
